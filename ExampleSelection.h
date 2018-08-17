@@ -100,6 +100,9 @@ protected:
 
   /** Histograms */
   TH2D* fNuVertexXZHist;  //!< Neutrino vertex XZ projection
+  TH2D* fNuVertexXYHist;
+  TH2D* fNuVertexYZHist;
+
   std::vector<TH1D*> fCut1; //cuts for selection criteria nu_e CC electron with E_e > 200 MeV
   THStack* fnueCC;
   std::vector<TH1D*> fCut1_reco; //Cut 1 with reconstructed neutrino energy
@@ -126,18 +129,33 @@ protected:
   //ALL of my variable cut histograms
   std::ofstream familyConfusion;
   TH1D* nuFlux; //neutrino count vs energy
+
+  std::vector<TH1D*> prelimCuts; 
+  THStack* prelim_stack_nue;
+  std::vector<TH1D*> showerE; //0 is showers associated with neutrinos, 1 is non-associated showers
+  THStack* showerE_stack;  
+
+  TH2D* nuE_vs_reco; //truth energy vs reconstructed energy (from CCQE)
+  TH1D* dist_from_vertex; //ct vs distance from neutrino vertex, for all tracks & showers. 
+  std::vector<TH1D*> vertexDist_truth; //differentiates between nue CC, photons, and cosmics
+  THStack* truthVD_stack;
+  std::vector<TH1D*> vertexDist_reco;
+  THStack* recoVD_stack; 
+
+  std::vector<TH1D*> sh_activeVol; //0 is all nu_e, 1 is nu_e in active volume
+  THStack* sh_inActVol;
+  std::vector<TH1D*> tr_activeVol;
+  THStack* tr_inActVol;
+
   std::vector<TH1D*> E_gamma; //ct vs photon shower energy
   THStack* gammaStack;
-  TH2D* E_shower_nu; //shower energy vs neutrino energy
-  TH1D* E_shower; //ct vs shower energy
   TH1D* dEdx;
   std::vector<TH1D*> dEdx_2; //differentiates b/w gamma and e- showers
   THStack* dEdx_2_stack;
-  TH1D* dist_from_vertex; //ct vs distance from neutrino vertex
   TH2D* E_hadron; //count vs hadron energies 
   std::vector<TH1D*> hPass; //hadrons that pass the gamma (energy) cuts
   THStack* hadStack;
-  std::vector<TH1D*> pPass; //interactions that have a visible vertex  showers that have     
+  std::vector<TH1D*> pPass; //interactions that have a visible vertex     
   THStack* phoStack;
 
   TH1D* fnumu_reco1; 
